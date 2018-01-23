@@ -1,0 +1,13 @@
+---
+packages:
+  ssmtp:
+    pkg: "ssmtp"
+    ver: "latest"
+  mailutils:
+    pkg: "mailutils"
+    ver: "latest"
+  mpack:
+    pkg: "mpack"
+    ver: "latest"
+
+ssmtp_cfg: "/etc/ssmtp/ssmtp.conf"

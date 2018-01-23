@@ -1,0 +1,44 @@
+---
+- name: Gather vars
+  include_vars:
+    dir: 'vars'
+    extensions: ['yml']
+
+- name: Install project pre-reqs
+  apt:
+    name: "{{ item.value.pkg }}"
+    state: present
+    update_cache: yes
+  with_dict: "{{ packages }}"
+
+- name: Update boot config
+  blockinfile:
+    path: /boot/config.txt
+    marker: "##<!-- {mark} ANSIBLE MANAGED -->"
+    block: |
+      #DISPLAY AND ROTATION
+      # Display orientation. Landscape = 0, Portrait = 1
+      display_rotate=1
+      # Use 24 bit colors
+      framebuffer_depth=24
+
+      #CHROMIUM AND DAK
+      ~/.config/lxsession/LXDE-pi/autostart
+      @xset s off
+      @xset -dpms
+      @xset s noblank
+      @chromium-browser --noerrdialogs --incognito --kiosk {{ dak_url }}
+
+- name: Copy display control script
+  copy:
+    src: ../scripts/rpi-hdmi.sh
+    dest: /home/pi/rpi-hdmi.sh
+    owner: root
+    mode: 0777
+
+- name: Crontab monitor control
+  cron:
+    name: "{{ item.value.name }}"
+    hour: "{{ item.value.hour }}"
+    job: "{{ item.value.job }}"
+  with_dict: "{{ cron_jobs }}"

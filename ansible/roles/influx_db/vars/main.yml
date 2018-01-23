@@ -1,0 +1,8 @@
+---
+packages:
+  influx:
+    pkg: "influxdb"
+    ver: "latest"
+  py_influx:
+    pkg: "python-influxdb"
+    ver: "latest"

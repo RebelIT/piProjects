@@ -1,0 +1,26 @@
+---
+dak_url: https://dakboard.com/app?p={{ dak_token }}
+
+packages:
+  unclutter:
+    pkg: "unclutter"
+  chromium:
+    pkg: "rpi-chromium-mods"
+
+cron_jobs:
+  am_on:
+    name: "AM turn monitor on"
+    job: "/home/pi/rpi-hdmi.sh on"
+    hour: 6
+  am_off:
+    name: "AM turn monitor off"
+    job: "/home/pi/rpi-hdmi.sh off"
+    hour: 8
+  pm_on:
+    name: "PM turn monitor on"
+    job: "/home/pi/rpi-hdmi.sh on"
+    hour: 16
+  pm_off:
+    name: "PM turn monitor off"
+    job: "/home/pi/rpi-hdmi.sh off"
+    hour: 22

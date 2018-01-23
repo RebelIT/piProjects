@@ -1,0 +1,5 @@
+---
+- name: Update Distribution
+  apt:
+    upgrade: yes
+    update_cache: yes

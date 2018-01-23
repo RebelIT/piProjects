@@ -1,0 +1,24 @@
+---
+- name: Gather vars
+  include_vars:
+    dir: 'vars'
+    extensions: ['yml']
+
+- name: Install project packages
+  apt:
+    name: "{{ item.value.pkg }}"
+    state: "{{ item.value.ver }}"
+    update_cache: yes
+  with_dict: "{{ packages }}"
+
+- name: Update ssmtp configuration
+  blockinfile:
+    path: "{{ ssmtp_cfg }}"
+    marker: "##<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+    block: |
+      AuthUser={{ gmail_address }}
+      AuthPass={{ gmail_pass }}
+      FromLineOverride=YES
+      mailhub=smtp.gmail.com:587
+      UseSTARTTLS=YES
+    create: yes

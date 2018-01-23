@@ -1,0 +1,15 @@
+---
+- name: Check wifi power control
+  command: grep "iwconfig wlan0 power off" /etc/rc.local
+  register: wifi_pwr_off
+  check_mode: no
+  changed_when: false
+  ignore_errors: true
+
+- name: Disable wifi power control
+  blockinfile:
+    path: /etc/rc.local
+    marker: "##<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+    block: |
+      iwconfig wlan0 power off
+  when: wifi_pwr_off|failed

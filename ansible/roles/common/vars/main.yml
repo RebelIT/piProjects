@@ -1,0 +1,8 @@
+---
+packages:
+  git:
+    pkg: "git"
+    ver: "latest"
+  curl:
+    pkg: "curl"
+    ver: "latest"

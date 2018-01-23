@@ -1,0 +1,28 @@
+[all:vars]
+  ssh_user=pi
+  ansible_become=true
+###############################
+## Wall Mount DAK calendar project
+[piCalendar:vars]
+
+[piCalendar:children]
+  kitchen
+
+[kitchen:vars]
+  hostname=piCalendar01
+
+[kitchen]
+  10.0.0.14
+###############################
+###############################
+## Grafana with influxDB project
+[piGrafana:vars]
+  grafana_version=4.5.2
+  hostname=piGrafana01
+
+[piGrafana:children]
+  grafana
+
+[grafana]
+  10.0.0.14
+###############################
