@@ -1,0 +1,41 @@
+---
+- name: Gather vars
+  include_vars:
+    dir: 'vars'
+    extensions: ['yml']
+
+- name: Install project pre-reqs
+  apt:
+    name: "{{ item.value.pkg }}"
+    state: present
+    update_cache: yes
+  with_dict: "{{ packages }}"
+
+- name: Add dev2day source and key
+  shell: "wget -O - https://dev2day.de/pms/dev2day-pms.gpg.key | sudo apt-key add"
+
+- name: Add dev2day repo
+  blockinfile:
+    path: /etc/apt/sources.list.d/pms.list
+    marker: "##<!-- {mark} ANSIBLE MANAGED -->"
+    block: |
+      deb https://dev2day.de/pms/ jessie main
+
+- name: Install Plex and refresh package list
+  apt:
+    name: plexmediaserver
+    state: present
+    update_cache: yes
+
+- name: Set plex user
+  replace:
+    path: /etc/default/plexmediaserver.prev
+    regexp: 'PLEX_MEDIA_SERVER_USER=plex'
+    replace: 'PLEX_MEDIA_SERVER_USER=pi'
+    backup: yes
+
+- name: Restart services
+  service: name='plexmediaserver' state='restarted'
+
+- name: Set service to start on boot
+  shell: "update-rc.d plexmediaserver enable"
