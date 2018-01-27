@@ -12,6 +12,8 @@ Misc RaspberryPi projects
   dak_token: 'xxx' #your personal DAK url
   db_admin: 'xxx' #influx db admin username
   db_admin_pass: 'xxx' #influx db admin password
+  gmail_address: 'xxx' #Gmail account to send messages
+  gmail_pass: 'xxx' #Gmail account PW
   ```
 
 ---
