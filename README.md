@@ -34,6 +34,8 @@ Misc RaspberryPi projects
 ## DAK Digital Wall Mount Calendar on RaspberryPi3
 ### Notes:
 * Tested on Stretch - NOOBS
+* You will need a DAK account (free)
+* You will need a gmail account & calendar (free)
 
 ### Usage:
 * Update hosts with IP or Hostname under the [piCalendar]
@@ -68,6 +70,7 @@ Misc RaspberryPi projects
 * HTpi on a raspberryPi3 (not very powerful at transcoding)
 * Tested on jessie - LITE
 * post install URI = <ip>:32400/web/
+& You will need a plex account (free)
 
 ### Usage:
 * Update hosts with IP or Hostname under the [piplex]
@@ -76,7 +79,7 @@ Misc RaspberryPi projects
   --ask-sudo-pass may be required if running reboot role due to your local setup
   ansible-playbook piPlex_setup.yml --ask-vault-pass -i hosts
   ```
-  
+
 ---
 ---
 # sources:
