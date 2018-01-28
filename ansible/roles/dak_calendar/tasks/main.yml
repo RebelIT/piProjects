@@ -27,7 +27,7 @@
       @xset s off
       @xset -dpms
       @xset s noblank
-      @chromium-browser --noerrdialogs --incognito --kiosk {{ dak_url }}
+      @DISPLAY=:0 chromium-browser --noerrdialogs --incognito --kiosk {{ dak_url }}
 
 - name: Copy display control script
   copy:
@@ -42,3 +42,6 @@
     hour: "{{ item.value.hour }}"
     job: "{{ item.value.job }}"
   with_dict: "{{ cron_jobs }}"
+
+- name: Set chromium as default browser
+  shell: "xdg-settings set default-web-browser chromium-browser.desktop"
