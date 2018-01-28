@@ -61,3 +61,19 @@ Misc RaspberryPi projects
   ```
   echo "hello" | mail -s "Subject Hello" emailaddress@gmail.com
   ```
+
+---
+---
+# sources:
+* Credit for these projects goes to the following: (I simply automated the pi setup)
+* these walkthroughs were for older versions if raspbian, needed some modifications to with stretch.
+
+```
+DAK Wall mount
+https://dakboard.com/blog/diy-wall-display/
+```
+```
+Grafana with InfluxDB
+https://github.com/fg2it/grafana-on-raspberry/wiki
+https://www.circuits.dk/install-grafana-influxdb-raspberry/
+```
