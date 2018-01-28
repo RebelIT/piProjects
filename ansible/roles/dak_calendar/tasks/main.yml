@@ -22,12 +22,37 @@
       # Use 24 bit colors
       framebuffer_depth=24
 
-      #CHROMIUM AND DAK
-      ~/.config/lxsession/LXDE-pi/autostart
+- name: Startup options
+  blockinfile:
+    path: /home/pi/.config/lxsession/LXDE-pi/autostart
+    marker: "##<!-- {mark} ANSIBLE MANAGED -->"
+    block: |
+      #Screensaver options
       @xset s off
-      @xset -dpms
       @xset s noblank
-      @DISPLAY=:0 chromium-browser --noerrdialogs --incognito --kiosk {{ dak_url }}
+      @xset -dpms
+      @unclutter -idle 5 -root
+      #Chromium start
+      @/home/pi/start_dak.sh
+
+- name: Disable Screensaver
+  lineinfile:
+    path: /home/pi/.config/lxsession/LXDE-pi/autostart
+    state: absent
+    line: "@xscreensaver -no-splash"
+
+- name: Create startup script
+  blockinfile:
+    path: /home/pi/start_dak.sh
+    marker: "##<!-- {mark} ANSIBLE MANAGED -->"
+    block: |
+      # Run browser after boot to desktop
+      /bin/sleep 3
+      DISPLAY=:0 chromium-browser --noerrdialogs --incognito --kiosk {{ dak_url }} &
+      # End of script
+    create: yes
+    owner: root
+    mode: 0777
 
 - name: Copy display control script
   copy:
@@ -36,12 +61,12 @@
     owner: root
     mode: 0777
 
-- name: Crontab monitor control
-  cron:
-    name: "{{ item.value.name }}"
-    hour: "{{ item.value.hour }}"
-    job: "{{ item.value.job }}"
-  with_dict: "{{ cron_jobs }}"
+#- name: Crontab monitor control
+#  cron:
+#    name: "{{ item.value.name }}"
+#    hour: "{{ item.value.hour }}"
+#    job: "{{ item.value.job }}"
+#  with_dict: "{{ cron_jobs }}"
 
 - name: Set chromium as default browser
   shell: "xdg-settings set default-web-browser chromium-browser.desktop"
