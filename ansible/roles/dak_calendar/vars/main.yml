@@ -11,19 +11,123 @@ packages:
 
 
 cron_jobs:
-  am_on:
-    name: "AM turn monitor on"
+  sun_am_on:
+    name: "Sunday turn monitor on"
     job: "/home/pi/rpi-hdmi.sh on"
-    hour: 6
-  am_off:
-    name: "AM turn monitor off"
-    job: "/home/pi/rpi-hdmi.sh off"
-    hour: 8
-  pm_on:
-    name: "PM turn monitor on"
-    job: "/home/pi/rpi-hdmi.sh on"
-    hour: 16
-  pm_off:
-    name: "PM turn monitor off"
+    hour: 7
+    weekday: 0
+  sun_pm_off:
+    name: "Sunday turn monitor off"
     job: "/home/pi/rpi-hdmi.sh off"
     hour: 22
+    weekday: 0
+  mon_am_on:
+    name: "Monday AM turn monitor on"
+    job: "/home/pi/rpi-hdmi.sh on"
+    hour: 6
+    weekday: 1
+  mon_am_off:
+    name: "Monday AM turn monitor off"
+    job: "/home/pi/rpi-hdmi.sh off"
+    hour: 8
+    weekday: 1
+  mon_pm_on:
+    name: "Monday PM turn monitor on"
+    job: "/home/pi/rpi-hdmi.sh on"
+    hour: 16
+    weekday: 1
+  mon_pm_off:
+    name: "Monday PM turn monitor off"
+    job: "/home/pi/rpi-hdmi.sh off"
+    hour: 22
+    weekday: 1
+  tue_am_on:
+    name: "Tuesday AM turn monitor on"
+    job: "/home/pi/rpi-hdmi.sh on"
+    hour: 6
+    weekday: 2
+  tue_am_off:
+    name: "Tuesday AM turn monitor off"
+    job: "/home/pi/rpi-hdmi.sh off"
+    hour: 8
+    weekday: 2
+  tue_pm_on:
+    name: "Tuesday PM turn monitor on"
+    job: "/home/pi/rpi-hdmi.sh on"
+    hour: 16
+    weekday: 2
+  tue_pm_off:
+    name: "Tuesday PM turn monitor off"
+    job: "/home/pi/rpi-hdmi.sh off"
+    hour: 22
+    weekday: 2
+  wed_am_on:
+    name: "Wednesday AM turn monitor on"
+    job: "/home/pi/rpi-hdmi.sh on"
+    hour: 6
+    weekday: 3
+  wed_am_off:
+    name: "Wednesday AM turn monitor off"
+    job: "/home/pi/rpi-hdmi.sh off"
+    hour: 8
+    weekday: 3
+  wed_pm_on:
+    name: "Wednesday PM turn monitor on"
+    job: "/home/pi/rpi-hdmi.sh on"
+    hour: 16
+    weekday: 3
+  wed_pm_off:
+    name: "Wednesday PM turn monitor off"
+    job: "/home/pi/rpi-hdmi.sh off"
+    hour: 22
+    weekday: 3
+  thu_am_on:
+    name: "Thursday AM turn monitor on"
+    job: "/home/pi/rpi-hdmi.sh on"
+    hour: 6
+    weekday: 4
+  thu_am_off:
+    name: "Thursday AM turn monitor off"
+    job: "/home/pi/rpi-hdmi.sh off"
+    hour: 8
+    weekday: 4
+  thu_pm_on:
+    name: "Thursday PM turn monitor on"
+    job: "/home/pi/rpi-hdmi.sh on"
+    hour: 16
+    weekday: 4
+  thu_pm_off:
+    name: "Thursday PM turn monitor off"
+    job: "/home/pi/rpi-hdmi.sh off"
+    hour: 22
+    weekday: 4
+  fri_am_on:
+    name: "Friday AM turn monitor on"
+    job: "/home/pi/rpi-hdmi.sh on"
+    hour: 6
+    weekday: 5
+  fri_am_off:
+    name: "Friday AM turn monitor off"
+    job: "/home/pi/rpi-hdmi.sh off"
+    hour: 8
+    weekday: 5
+  fri_pm_on:
+    name: "Friday PM turn monitor on"
+    job: "/home/pi/rpi-hdmi.sh on"
+    hour: 16
+    weekday: 5
+  fri_pm_off:
+    name: "Friday PM turn monitor off"
+    job: "/home/pi/rpi-hdmi.sh off"
+    hour: 22
+    weekday: 5
+  sat_am_on:
+    name: "Saturday turn monitor on"
+    job: "/home/pi/rpi-hdmi.sh on"
+    hour: 7
+    weekday: 6
+  sat_pm_off:
+    name: "Saturday turn monitor off"
+    job: "/home/pi/rpi-hdmi.sh off"
+    hour: 22
+    weekday: 6
