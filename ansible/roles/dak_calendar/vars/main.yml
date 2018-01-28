@@ -4,8 +4,11 @@ dak_url: https://dakboard.com/app?p={{ dak_token }}
 packages:
   unclutter:
     pkg: "unclutter"
-  chromium:
+  chromium_mods:
     pkg: "rpi-chromium-mods"
+  chromium:
+    pkg: "chromium-bsu"
+
 
 cron_jobs:
   am_on:
