@@ -30,7 +30,7 @@
 ## Plex Server
 [piPlex:vars]
 
-[piGrafana:children]
+[piPlex:children]
   main
 
 [main]
