@@ -1,0 +1,4 @@
+---
+packages:
+  transport:
+    pkg: "apt-transport-https"
