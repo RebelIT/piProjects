@@ -7,7 +7,8 @@
   roles:
     ## Only use update on initial build, will upgrade application if run multiple times.
 #    - update
-#    - common
-#    - reboot
-#    - wifi
+    - common
+    - reboot
+    - wifi
     - dak_calendar
+    - reboot
