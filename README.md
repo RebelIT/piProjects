@@ -66,7 +66,7 @@ Misc RaspberryPi projects
 ## Plex server on RaspberryPi3
 ### Notes:
 * HTpi on a raspberryPi3 (not very powerful at transcoding)
-* Tested on Stretch - LITE
+* Tested on jessie - LITE
 * post install URI = <ip>:32400/web/
 
 ### Usage:
