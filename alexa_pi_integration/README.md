@@ -11,6 +11,7 @@ Credit where credit is due, I used this blog post as well as his code framework 
   ```
   https://developer.amazon.com/edw/home.html
   ```
+---
 
 * Create your messaging queue
 1. In your AWS console search for the "Simple Queue Service (SQS)" service
@@ -24,11 +25,13 @@ Credit where credit is due, I used this blog post as well as his code framework 
   ARN:	arn:aws:sqs:us-east-2:<some number>:<queue name>
   ```
 
+---
 * Create an API user for your queue
 1. In your AWS console search for the "IAM" service
 2. Go to users
 3. Create a new user and assign permissions
 
+---
 * Create your lambda function to do an action
 1. In your AWS console search for the "lambda" service
 2. IMPORTANT: Switch to US East N. Virginia region (this region supports alexa skills)
@@ -44,6 +47,7 @@ Credit where credit is due, I used this blog post as well as his code framework 
 12. Copy contents from lambda_function.py into the code block editing if statement on line 42 for your intents and message to write.
 13. Click on the blank dotted box in the tree view, add Alexa Skills Kit
 
+---
 * Create your skill
 1. Follow the link to the Alexa skills developer portal
 2. Click get started to the Alexa Skills Kit
