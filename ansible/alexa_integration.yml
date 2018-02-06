@@ -1,0 +1,8 @@
+---
+- hosts:
+    piCalendar
+  connection: ssh
+  remote_user: "{{ ssh_user }}"
+
+  roles:
+    - alexa_consumer # commented out due to pre-reqs, if all met then this can be enabled. 

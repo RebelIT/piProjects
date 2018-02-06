@@ -1,0 +1,5 @@
+---
+cron_jobs:
+  sun_am_on:
+    name: "SQS Read Queue"
+    job: "python /home/pi/check_queue.py"
