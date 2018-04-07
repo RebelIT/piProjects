@@ -1,0 +1,8 @@
+---
+packages:
+  deluge:
+    pkg: "deluged"
+    ver: "latest"
+  deluge_console:
+    pkg: "deluge-console"
+    ver: "latest"

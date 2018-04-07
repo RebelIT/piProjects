@@ -1,0 +1,32 @@
+---
+- name: Gather vars
+  include_vars:
+    dir: 'vars'
+    extensions: ['yml']
+
+- name: Install project packages
+  apt:
+    name: "{{ item.value.pkg }}"
+    state: "{{ item.value.ver }}"
+    update_cache: yes
+  with_dict: "{{ packages }}"
+
+- name: Start service
+  service: name='deluged' state='started'
+
+- name: Stop service
+  service: name='deluged' state='stopped'
+
+- name: Update config
+  blockinfile:
+    path: ~/.config/deluge/auth
+    marker: "##<!-- {mark} ANSIBLE MANAGED -->"
+    block: |
+      {{ deluge_user }}:{{ deluge_pass }}:10
+    backup: yes
+
+- name: Start service
+  service: name='deluged' state='started'
+
+- name: Start service
+  service: name='deluge-console' state='started'
