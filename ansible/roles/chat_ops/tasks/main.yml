@@ -4,14 +4,21 @@
     dir: 'vars'
     extensions: ['yml']
 
-- name: Install project packages
+- name: Install project pre-reqs
   apt:
     name: "{{ item.value.pkg }}"
-    state: "{{ item.value.ver }}"
+    state: present
     update_cache: yes
   with_dict: "{{ packages }}"
 
-- name: Update ssmtp configuration
+- name: Copy Slack notification script
+  copy:
+    src: ../scripts/slack_post.sh
+    dest: /home/pi/automation/chatops/slack_post.sh
+    owner: root
+    mode: 0777
+
+- name: Email notifications smtp config
   blockinfile:
     path: "{{ ssmtp_cfg }}"
     marker: "##<!-- {mark} ANSIBLE MANAGED BLOCK -->"

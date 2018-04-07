@@ -1,0 +1,20 @@
+---
+#Slack Notifications vars
+slack_username: "pi"
+slack_icon_url: "https://pbs.twimg.com/profile_images/948144512341245952/5pw6pkFu_400x400.jpg"
+
+#smtp mailer vars
+ssmtp_cfg: "/etc/ssmtp/ssmtp.conf"
+
+packages:
+  unclutter:
+    pkg: "curl"
+  ssmtp:
+    pkg: "ssmtp"
+    ver: "latest"
+  mailutils:
+    pkg: "mailutils"
+    ver: "latest"
+  mpack:
+    pkg: "mpack"
+    ver: "latest"
