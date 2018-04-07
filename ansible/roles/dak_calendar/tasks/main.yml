@@ -18,9 +18,16 @@
     block: |
       #DISPLAY AND ROTATION
       # Display orientation. Landscape = 0, Portrait = 1
-      display_rotate=1
+      display_rotate=0
       # Use 24 bit colors
       framebuffer_depth=24
+      # HDMI power, display and contol settings
+      disable_overscan=1
+      config_hdmi_boost=7
+      hdmi_force_hotplug=1
+      # Overscan to adjust to custom TV framebuffer_depth
+      overscan_left=30
+      overscan_right=30
 
 - name: Startup options
   blockinfile:
@@ -33,7 +40,7 @@
       @xset -dpms
       @unclutter -idle 5 -root
       #Chromium start
-      @/home/pi/start_dak.sh
+      @/home/pi/automation/calendar/start_dak.sh
 
 - name: Disable Screensaver
   lineinfile:
@@ -43,7 +50,7 @@
 
 - name: Create startup script
   blockinfile:
-    path: /home/pi/start_dak.sh
+    path: /home/pi/automation/calendar/start_dak.sh
     marker: "##<!-- {mark} ANSIBLE MANAGED -->"
     block: |
       # Run browser after boot to desktop
@@ -61,7 +68,7 @@
     owner: root
     mode: 0777
 
-##There is probably a better way to do this than create 28 crontab entries. 
+##There is probably a better way to do this than create 28 crontab entries.
 - name: Crontab monitor control
   cron:
     name: "{{ item.value.name }}"
