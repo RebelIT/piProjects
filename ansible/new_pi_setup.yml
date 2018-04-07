@@ -1,0 +1,11 @@
+---
+- hosts:
+    piUtility
+  connection: ssh
+  remote_user: "{{ ssh_user }}"
+
+  roles:
+    ## Only use update on initial build, will upgrade application if run multiple times.
+    - update
+    - common
+    - reboot
