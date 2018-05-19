@@ -6,13 +6,13 @@ class CollectStat
   def main
     device = connect(ENV['sensi_user'],ENV['sensi_pw'])
     db_connect = connect_db(ENV['db'])
-    thermostat_name = device.DeviceName
+    #thermostat_name = device.DeviceName
 
     unless device.nil? || db_connect.nil?
       thermostat_stats = collect_stats(device)
 
       unless thermostat_stats.nil?
-          send_stats(thermostat_stats,db_connect,thermostat_name)
+          send_stats(thermostat_stats,db_connect)
 
       end
     end
@@ -47,8 +47,8 @@ class CollectStat
     stats
   end
 
-  def send_stats(stats,db,name)
-    name = 'home_furnace'
+  def send_stats(stats,db)
+    name = 'Upstairs'
 
     stats.each do |key,value|
       data = {values: { "#{{key}}": "#{value}" },tags:{ location: "#{{name}}" }}
