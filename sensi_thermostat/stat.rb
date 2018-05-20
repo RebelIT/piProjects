@@ -1,5 +1,6 @@
 require "sensi"
 require "influxdb"
+require "time"
 require_relative './secrets.rb'
 
 class CollectStat
@@ -34,7 +35,16 @@ class CollectStat
   end
 
   def collect_stats(thermostat)
-    stats = {
+    base = Time.parse('00:00:00')
+    runtime = thermostat.active_time
+    runtime = Time.parse(runtime)
+    if runtime == base
+      stat_time = 0
+    else
+      stat_time = runtime.to_i - base.to_i
+    end
+
+     stats = {
       "mode" => thermostat.system_mode,
       "temp" => thermostat.temperature,
       "set_temp" => thermostat.system_temperature,
@@ -42,18 +52,18 @@ class CollectStat
       "system_enabled" => thermostat.system_on?.to_s,
       "fan_enabled" => thermostat.system_fan_on?.to_s,
       "System_running" => thermostat.system_active?.to_s,
-      "runtime" => thermostat.active_time
+      "runtime" => stat_time
     }
     stats
   end
 
   def send_stats(stats,db)
-    name = 'Upstairs'
+    name = 'Thermostat'
 
     stats.each do |key,value|
-      data = {values: { "#{{key}}": "#{value}" },tags:{ location: "#{{name}}" }}
-      db.write_point(name, data)
-      #puts data
+      data = {values: { "#{key}": value },tags:{ location: "Upstairs" }}
+#      db.write_point(name, data)
+      puts data
     end
   end
 
