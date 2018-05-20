@@ -37,12 +37,12 @@ class CollectStat
   def collect_stats(thermostat)
     base = Time.parse('00:00:00')
     runtime = thermostat.active_time
-    runtime = Time.parse(runtime)
-    if runtime == base
-      stat_time = 0
-    else
-      stat_time = runtime.to_i - base.to_i
-    end
+    #runtime = Time.parse(runtime)
+    #if runtime == base
+    #   stat_time = 0
+    # else
+    #  stat_time = runtime.to_i - base.to_i
+    #end
 
      stats = {
       "mode" => thermostat.system_mode,
@@ -52,7 +52,7 @@ class CollectStat
       "system_enabled" => thermostat.system_on?.to_s,
       "fan_enabled" => thermostat.system_fan_on?.to_s,
       "System_running" => thermostat.system_active?.to_s,
-      "runtime" => stat_time
+      "runtime" => runtime
     }
     stats
   end
