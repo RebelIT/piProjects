@@ -35,13 +35,13 @@ class CollectStat
   end
 
   def collect_stats(thermostat)
-    runtime = thermostat.active_time.to_i
-    if runtime = 0
-      stat_time = runtime
+    runtime = thermostat.active_time
+    if runtime == "0"
+      stat_time = runtime.to_i
     else
       base_time = Time.parse('00:00:00')
       runtime = Time.parse(runtime)
-      stat_time = runtime.to_i - base.to_i
+      stat_time = runtime.to_i - base_time.to_i
     end
 
    stats = {
@@ -52,7 +52,7 @@ class CollectStat
     "system_enabled" => thermostat.system_on?.to_s,
     "fan_enabled" => thermostat.system_fan_on?.to_s,
     "System_running" => thermostat.system_active?.to_s,
-    "runtime" => runtime
+    "runtime" => stat_time
     }
     stats
   end
@@ -62,8 +62,8 @@ class CollectStat
 
     stats.each do |key,value|
       data = {values: { "#{key}": value },tags:{ location: "Upstairs" }}
-#      db.write_point(name, data)
-      puts data
+      db.write_point(name, data)
+#      puts data
     end
   end
 
